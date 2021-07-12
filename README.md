@@ -20,7 +20,7 @@ $ helm repo add kube-vip https://kube-vip.io/helm-charts/
 
 ## Using this helm repository
 
-To install a chart from this repository (example with Redis):
+To install kube-vip from this repository:
 
 ```bash
 $ helm install kube-vip kube-vip.io/helm-charts/kube-vip
