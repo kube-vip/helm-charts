@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  kube-vip:
+  - apiVersion: v2
+    appVersion: v0.3.6
+    created: "2021-07-19T05:04:52.249916773Z"
+    description: A Helm chart for kube-vip
+    digest: 33adfcf2d780a9c3db505d61db31c635988b5c9a27267e868971aeef37b8fac3
+    name: kube-vip
+    type: application
+    urls:
+    - https://github.com/kube-vip/helm-charts/releases/download/kube-vip-0.3.6/kube-vip-0.3.6.tgz
+    version: 0.3.6
+generated: "2021-07-19T05:04:52.249921373Z"
