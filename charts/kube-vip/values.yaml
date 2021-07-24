@@ -8,14 +8,16 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v0.3.6"
 
-env:
-  - vip_arp: "true"
-  - port: "6443"
-  - vip_cidr: "32"
-  - cp_enable: "true"
-  - svc_enable: "true"
-  - vip_startleader: "false"
-  - vip_addpeerstolb: "true"
+config:
+  vip_interface: ""
+  vip_address: ""
+  vip_arp: "true"
+  port: "6443"
+  vip_cidr: "32"
+  cp_enable: "false"
+  svc_enable: "true"
+  vip_startleader: "false"
+  vip_addpeerstolb: "true"
 
 interface: ""
 address: ""

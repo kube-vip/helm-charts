@@ -17,17 +17,27 @@ spec:
           - manager
         env:
           - name: vip_interface
-            value: {{ required "A valid interface required!" .Values.interface }}
+            value: {{ required "A valid interface required!" .Values.config.vip_interface}}
+          {{ if eq .Values.config.cp_enable "true" }}
           - name: vip_address
-            value: {{ required "A valid address required!" .Values.address }}
+            value: {{ required "A valid address required!" .Values.config.vip_address}}
+          {{ end }}
+          - name: vip_arp
+            value: {{ .Values.config.vip_arp | quote }}
+          - name: port
+            value: {{ .Values.config.port | quote }}
           - name: cp_namespace
             value: {{ .Release.Namespace }}
-          {{- range .Values.env }}
-          {{- range $key,$val := . }}
-          - name: {{ $key }}
-            value: {{ $val | quote }}
-          {{- end }}
-          {{- end }}
+          - name: vip_cidr
+            value: {{ .Values.config.vip_cidr | quote }}
+          - name: cp_enable
+            value: {{ .Values.config.cp_enable | quote }}
+          - name: svc_enable
+            value: {{ .Values.config.svc_enable | quote }}
+          - name: vip_startleader
+            value: {{ .Values.config.vip_startleader | quote }}
+          - name: vip_addpeerstolb
+            value: {{ .Values.config.vip_addpeerstolb | quote }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: kube-vip
