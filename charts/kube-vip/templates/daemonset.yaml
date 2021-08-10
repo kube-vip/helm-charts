@@ -17,10 +17,10 @@ spec:
           - manager
         env:
           - name: vip_interface
-            value: {{ required "A valid interface required!" .Values.config.vip_interface}}
+            value: {{ required "A valid config.vip_interface required!" .Values.config.vip_interface}}
           {{ if eq .Values.config.cp_enable "true" }}
           - name: vip_address
-            value: {{ required "A valid address required!" .Values.config.vip_address}}
+            value: {{ required "A valid config.vip_address required!" .Values.config.vip_address}}
           {{ end }}
           - name: vip_arp
             value: {{ .Values.config.vip_arp | quote }}
