@@ -53,3 +53,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Default name of the load balancer config Map
+# kubeVipCloudConfig: "kubevip"
+
+# CIDR format IP range that this routing rule applies to.
+# destinationCIDR: "29"
