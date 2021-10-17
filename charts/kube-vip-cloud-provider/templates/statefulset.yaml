@@ -25,6 +25,17 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          env:
+          - name: KUBEVIP_NAMESPACE
+            value: {{ .Release.Namespace | default "kube-system" | quote }}
+{{ if .Values.config.kubeVipCloudConfig }}
+          - name: KUBEVIP_CONFIG_MAP
+            value: {{ .Values.config.kubeVipCloudConfig | quote }}
+{{ end }}
+{{ if .Values.config.destinationCIDR }}
+          - name: KUBEVIP_SERVICE_CIDR
+            value: {{ .Values.config.destinationCIDR | quote }}
+{{ end }}
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
