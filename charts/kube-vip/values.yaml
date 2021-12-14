@@ -59,8 +59,8 @@ resources: { }
 #   cpu: 100m
 #   memory: 128Mi
 
-nodeSelector:
-  node-role.kubernetes.io/master: "true"
+nodeSelector: {}
+  # node-role.kubernetes.io/master: "true"
 
 tolerations:
   - effect: NoSchedule
