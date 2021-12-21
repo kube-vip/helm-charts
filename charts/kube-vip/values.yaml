@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: plndr/kube-vip
+  repository: ghcr.io/kube-vip/kube-vip
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.3.6"
+  tag: "v0.4.0"
 
 config:
   vip_interface: ""
