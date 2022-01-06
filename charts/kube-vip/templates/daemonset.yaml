@@ -16,28 +16,18 @@ spec:
       - args:
           - manager
         env:
-          - name: vip_interface
-            value: {{ .Values.config.vip_interface | quote }}
-          {{- if eq .Values.config.cp_enable "true" }}
-          - name: vip_address
-            value: {{ required "A valid config.vip_address required!" .Values.config.vip_address}}
+          {{- if eq .Values.env.cp_enable "true" }}
+          - name: address
+            value: {{ required "A valid config.address required!" .Values.config.address}}
           {{- end }}
-          - name: vip_arp
-            value: {{ .Values.config.vip_arp | quote }}
-          - name: port
-            value: {{ .Values.config.port | quote }}
-          - name: cp_namespace
-            value: {{ .Release.Namespace }}
-          - name: vip_cidr
-            value: {{ .Values.config.vip_cidr | quote }}
-          - name: cp_enable
-            value: {{ .Values.config.cp_enable | quote }}
-          - name: svc_enable
-            value: {{ .Values.config.svc_enable | quote }}
-          - name: vip_startleader
-            value: {{ .Values.config.vip_startleader | quote }}
-          - name: vip_addpeerstolb
-            value: {{ .Values.config.vip_addpeerstolb | quote }}
+        {{- with .Values.env }}
+          {{- range $k, $v := . }}
+            {{- $name := $k }}
+            {{- $value := $v }}
+          - name: {{ quote $name }}
+            value: {{ quote $value }}
+          {{- end }}
+        {{- end }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: kube-vip
