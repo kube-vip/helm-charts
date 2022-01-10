@@ -17,7 +17,7 @@ spec:
           - manager
         env:
           {{- if eq .Values.env.cp_enable "true" }}
-          - name: address
+          - name: vip_address
             value: {{ required "A valid config.address required!" .Values.config.address}}
           {{- end }}
         {{- with .Values.env }}
@@ -43,5 +43,9 @@ spec:
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
