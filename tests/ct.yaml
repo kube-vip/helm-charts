@@ -1,0 +1,4 @@
+remote: upstream
+target-branch: main
+chart-dirs:
+  - charts
