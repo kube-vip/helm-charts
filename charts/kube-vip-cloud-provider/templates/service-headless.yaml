@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "kube-vip-cloud-provider.labels" . | nindent 4 }}
+  name: {{ include "kube-vip-cloud-provider.name" . }}-headless
+spec:
+  clusterIP: None
+  ports:
+    - port: 10258
+      targetPort: 10258
+      protocol: TCP
+      name: secure-server
+  selector:
+    {{- include "kube-vip-cloud-provider.selectorLabels" . | nindent 4 }}

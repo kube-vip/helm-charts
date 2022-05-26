@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  labels:
+  {{- include "kube-vip-cloud-provider.labels" . | nindent 4 }}
   name: {{ include "kube-vip-cloud-provider.name" . }}
   namespace: {{ .Release.Namespace | default "kube-system" }}
 spec:
-  serviceName: {{ include "kube-vip-cloud-provider.name" . }}
+  serviceName: {{ include "kube-vip-cloud-provider.name" . }}-headless
   replicas: {{ .Values.replicasCount }}
   selector:
     matchLabels:
@@ -36,7 +38,11 @@ spec:
           - name: KUBEVIP_SERVICE_CIDR
             value: {{ .Values.config.destinationCIDR | quote }}
           {{- end }}
-      serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
+          ports:
+            - name: secure-server
+              containerPort: 10258
+              protocol: TCP
+      serviceAccountName: {{ include "kube-vip-cloud-provider.serviceAccountName" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
