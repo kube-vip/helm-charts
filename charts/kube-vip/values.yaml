@@ -21,6 +21,21 @@ env:
   svc_enable: "true"
   vip_leaderelection: "false"
 
+envFrom:
+  # Specify an externally created Secret(s) or ConfigMap(s) to inject environment variables
+  # For example an externally provisioned secret could contain the password for your upstream BGP router, such as
+  #
+  # apiVersion: v1
+  # data:
+  #   bgp_peers: "<address:AS:password:multihop>"
+  # kind: Secret
+  #   name: kube-vip
+  #   namespace: kube-system
+  # type: Opaque
+  #
+#- secretKeyRef:
+#    name: kube-vip
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

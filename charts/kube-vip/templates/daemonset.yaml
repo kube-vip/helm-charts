@@ -28,6 +28,10 @@ spec:
             value: {{ quote $value }}
           {{- end }}
         {{- end }}
+      {{- with .Values.envFrom }}
+        envFrom:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: kube-vip
