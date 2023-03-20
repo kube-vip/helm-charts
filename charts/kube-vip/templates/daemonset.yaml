@@ -28,6 +28,15 @@ spec:
             value: {{ quote $value }}
           {{- end }}
         {{- end }}
+        {{- with .Values.envValueFrom }}
+          {{- range $k, $v := . }}
+            {{- $name := $k }}
+            {{- $value := $v }}
+          - name: {{ quote $name }}
+            valueFrom:
+              {{- toYaml $value | nindent 14 }}
+          {{- end }}
+        {{- end }}
       {{- with .Values.envFrom }}
         envFrom:
         {{- toYaml . | nindent 8 }}
