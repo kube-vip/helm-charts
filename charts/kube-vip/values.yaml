@@ -21,6 +21,13 @@ env:
   svc_enable: "true"
   vip_leaderelection: "false"
 
+envValueFrom: {}
+  # Specify environment variables using valueFrom references (EnvVarSource)
+  # For example we can use the IP address of the pod itself as a unique value for the routerID
+#bgp_routerid:
+#  fieldRef:
+#    fieldPath: status.podIP
+
 envFrom: []
   # Specify an externally created Secret(s) or ConfigMap(s) to inject environment variables
   # For example an externally provisioned secret could contain the password for your upstream BGP router, such as
