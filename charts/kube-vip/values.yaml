@@ -19,6 +19,7 @@ env:
   vip_cidr: "32"
   cp_enable: "false"
   svc_enable: "true"
+  svc_election: "false"
   vip_leaderelection: "false"
 
 envValueFrom: {}
