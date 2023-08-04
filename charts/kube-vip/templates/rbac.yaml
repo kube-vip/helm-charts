@@ -14,7 +14,7 @@ metadata:
   name: {{ include "kube-vip.name" . }}
 rules:
   - apiGroups: [""]
-    resources: ["services", "services/status", "nodes"]
+    resources: ["services", "services/status", "nodes", "endpoints"]
     verbs: ["list","get","watch", "update"]
   - apiGroups: ["coordination.k8s.io"]
     resources: ["leases"]
