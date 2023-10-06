@@ -12,6 +12,10 @@ spec:
       labels:
         {{- include "kube-vip.selectorLabels" . | nindent 8 }}
     spec:
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+    {{- end }}   
       containers:
       - args:
           - manager
