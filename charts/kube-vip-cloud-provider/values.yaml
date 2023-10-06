@@ -8,7 +8,7 @@ image:
   repository: kubevip/kube-vip-cloud-provider
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.4"
+  tag: "v0.0.7"
 
 resources:
   requests:
@@ -37,3 +37,10 @@ affinity:
           matchExpressions:
             - key: node-role.kubernetes.io/master
               operator: Exists
+
+nodeSelector: {}
+# Image pull secret to use for registry authentication.
+# Alternatively, the value may be specified as an array of strings.
+imagePullSecrets: []
+# imagePullSecrets:
+#   - name: image-pull-secret
