@@ -44,6 +44,9 @@ envFrom: []
   # - secretKeyRef:
   #    name: kube-vip
 
+extraLabels: {}
+  # Specify extra labels to be added to DaemonSet (and therefore to Pods)
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
