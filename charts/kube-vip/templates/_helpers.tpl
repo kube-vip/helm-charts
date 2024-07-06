@@ -61,3 +61,20 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Convert string to boolean
+*/}}
+{{- define "kube-vip.toBool" -}}
+{{- if eq (lower (toString .)) "true" -}}
+{{- true -}}
+{{- else if eq (lower (toString .)) "false" -}}
+{{- false -}}
+{{- else if eq (lower (toString .)) "1" -}}
+{{- true -}}
+{{- else if eq (lower (toString .)) "0" -}}
+{{- false -}}
+{{- else -}}
+{{- default . false -}}
+{{- end -}}
+{{- end -}}
