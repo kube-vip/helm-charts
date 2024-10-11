@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         {{- include "kube-vip-cloud-provider.selectorLabels" . | nindent 8 }}
+      annotations:
+        configmap-checksum: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - command:
@@ -19,6 +21,11 @@ spec:
             - --leader-elect-resource-name=kube-vip-cloud-controller
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           name: {{ include "kube-vip-cloud-provider.name" . }}
+          env:
+          - name: KUBEVIP_NAMESPACE
+            value: {{ .Release.Namespace | default "kube-system" }}
+          - name: KUBEVIP_CONFIG_MAP
+            value: {{ include "kube-vip-cloud-provider.name" . }}-cm
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
