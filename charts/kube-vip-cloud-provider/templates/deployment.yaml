@@ -23,7 +23,7 @@ spec:
           name: {{ include "kube-vip-cloud-provider.name" . }}
           env:
           - name: KUBEVIP_NAMESPACE
-            value: {{ .Release.Namespace | default "kube-system" }}
+            value: {{ .Release.Namespace }}
           - name: KUBEVIP_CONFIG_MAP
             value: {{ include "kube-vip-cloud-provider.name" . }}-cm
           imagePullPolicy: {{ .Values.image.pullPolicy }}
