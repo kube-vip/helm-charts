@@ -16,10 +16,10 @@ image:
 
 # cm:
 #   data:
-#     cidr-default: 192.168.0.200/29                      # CIDR-based IP range for use in the default Namespace
-#     range-development: 192.168.0.210-192.168.0.219      # Range-based IP range for use in the development Namespace
-#     cidr-finance: 192.168.0.220/29,192.168.0.230/29     # Multiple CIDR-based ranges for use in the finance Namespace
-#     cidr-global: 192.168.0.240/29   
+#     cidr-default: 192.168.0.200/29
+#     range-development: 192.168.0.210-192.168.0.219
+#     cidr-finance: 192.168.0.220/29,192.168.0.230/29
+#     cidr-global: 192.168.0.240/29
 
 cm:
   data: {}
@@ -31,6 +31,17 @@ resources:
   limits:
     cpu: 100m
     memory: 128Mi
+
+# Node selector allows you to constrain a Pod to be scheduled on nodes with specific labels.
+# If specified, the nodeSelector will be applied alongside the defined affinity rules.
+# If left empty, the nodeSelector will not be applied, and the Pod can be scheduled on any node.
+
+# nodeSelector:
+#   disktype: ssd
+#   nodepool: system
+#   critical-addons-only: "true"
+
+nodeSelector: {}
 
 tolerations:
   - key: node-role.kubernetes.io/master

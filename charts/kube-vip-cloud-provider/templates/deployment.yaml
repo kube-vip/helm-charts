@@ -23,6 +23,10 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
