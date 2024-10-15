@@ -22,6 +22,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
