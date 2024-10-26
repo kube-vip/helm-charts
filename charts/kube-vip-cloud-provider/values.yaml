@@ -24,6 +24,10 @@ image:
 cm:
   data: {}
 
+# By default, kube-vip-cloud-provider will use a configMap automatically generated from .Values.cm.data.
+# If .Values.configMapName is defined, it will use that configMap instead, which you must create yourself.
+configMapName: ""
+
 resources:
   requests:
     cpu: 50m
