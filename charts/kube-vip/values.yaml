@@ -88,6 +88,24 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+volumes: []
+  # Specify additional volumes
+  #   - hostPath:
+  #       path: /etc/rancher/k3s/k3s.yaml
+  #       type: File
+  #     name: kubeconfig
+
+volumeMounts: []
+  # Specify additional volume mounts
+  # - mountPath: /etc/kubernetes/admin.conf
+  #   name: kubeconfig
+
+hostAliases: []
+  # Specify additional host aliases
+  # - hostnames:
+  #     - kubernetes
+  #   ip: 127.0.0.1
+
 nodeSelector: {}
 
 tolerations:
