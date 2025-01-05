@@ -55,6 +55,8 @@ extraLabels: {}
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+# Custom namespace to override the namespace for the deployed resources.
+namespaceOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "kube-vip-cloud-provider.name" . }}
-  namespace: {{ .Release.Namespace | default "kube-system" }}
+  namespace: {{ include "kube-vip-cloudprovider.namespace" . | default "kube-system" }}
 spec:
   replicas: {{ .Values.replicasCount }}
   selector:

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ include "kube-vip.name" . }}
-  namespace: {{ .Release.Namespace | default "kube-system" }}
+  namespace: {{ include "kube-vip.namespace" . | default "kube-system" }}
 spec:
   selector:
     matchLabels:
