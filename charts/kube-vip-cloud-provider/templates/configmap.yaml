@@ -1,0 +1,11 @@
+{{- if .Values.cm.data }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kube-vip-cloud-provider.name" . }}
+  namespace: {{ .Release.Namespace }}
+data:
+{{- range $key, $value := .Values.cm.data }}
+  {{ $key }}: {{ $value | quote }}
+{{- end }}
+{{- end }}

@@ -8,7 +8,25 @@ image:
   repository: kubevip/kube-vip-cloud-provider
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.4"
+  # tag: "v0.0.4"
+
+## Cloud Provider ConfigMap
+## CIDR blocks , IP ranges [start address - end address]
+## Multiple pools by CIDR per Namespace, Multiple IP ranges per Namespace (handles overlapping ranges)
+
+# cm:
+#   data:
+#     cidr-default: 192.168.0.200/29
+#     range-development: 192.168.0.210-192.168.0.219
+#     cidr-finance: 192.168.0.220/29,192.168.0.230/29
+#     cidr-global: 192.168.0.240/29
+
+cm:
+  data: {}
+
+# By default, kube-vip-cloud-provider will use a configMap automatically generated from .Values.cm.data.
+# If .Values.configMapName is defined, it will use that configMap instead, which you must create yourself.
+configMapName: ""
 
 resources:
   requests:
@@ -17,6 +35,17 @@ resources:
   limits:
     cpu: 100m
     memory: 128Mi
+
+# Node selector allows you to constrain a Pod to be scheduled on nodes with specific labels.
+# If specified, the nodeSelector will be applied alongside the defined affinity rules.
+# If left empty, the nodeSelector will not be applied, and the Pod can be scheduled on any node.
+
+# nodeSelector:
+#   disktype: ssd
+#   nodepool: system
+#   critical-addons-only: "true"
+
+nodeSelector: {}
 
 tolerations:
   - key: node-role.kubernetes.io/master
@@ -37,3 +66,5 @@ affinity:
           matchExpressions:
             - key: node-role.kubernetes.io/master
               operator: Exists
+
+priorityClassName: ""
