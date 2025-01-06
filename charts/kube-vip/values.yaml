@@ -75,6 +75,8 @@ securityContext:
     add:
       - NET_ADMIN
       - NET_RAW
+    drop:
+      - ALL
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
