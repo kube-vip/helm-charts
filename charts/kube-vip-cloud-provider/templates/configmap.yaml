@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "kube-vip-cloud-provider.name" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "kube-vip-cloudprovider.namespace" . }}
 data:
 {{- range $key, $value := .Values.cm.data }}
   {{ $key }}: {{ $value | quote }}

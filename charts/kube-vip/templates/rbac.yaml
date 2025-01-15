@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{ include "kube-vip.name" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "kube-vip.namespace" . }}
   labels:
   {{- include "kube-vip.labels" . | nindent 4 }}
 ---
@@ -33,4 +33,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: {{ include "kube-vip.name" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "kube-vip.namespace" . }}

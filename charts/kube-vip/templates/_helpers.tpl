@@ -25,6 +25,17 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 
 {{/*
+Determine the namespace to use, allowing for a namespace override.
+*/}}
+{{- define "kube-vip.namespace" -}}
+  {{- if .Values.namespaceOverride }}
+    {{- .Values.namespaceOverride }}
+  {{- else }}
+    {{- .Release.Namespace }}
+  {{- end }}
+{{- end }}
+
+{{/*
 Create chart name and version as used by the chart label.
 */}}
 {{- define "kube-vip.chart" -}}

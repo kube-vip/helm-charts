@@ -10,6 +10,9 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v0.0.4"
 
+# Custom namespace to override the namespace for the deployed resources.
+namespaceOverride: ""
+
 ## Cloud Provider ConfigMap
 ## CIDR blocks , IP ranges [start address - end address]
 ## Multiple pools by CIDR per Namespace, Multiple IP ranges per Namespace (handles overlapping ranges)
