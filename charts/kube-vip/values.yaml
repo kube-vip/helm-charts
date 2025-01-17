@@ -21,6 +21,7 @@ env:
   svc_enable: "true"
   svc_election: "false"
   vip_leaderelection: "false"
+  # prometheus_server: ":2112"
 
 extraArgs: {}
   # Specify additional arguments to kube-vip

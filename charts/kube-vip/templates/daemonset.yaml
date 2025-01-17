@@ -27,6 +27,12 @@ spec:
           {{- end }}
           {{- end }}
           {{- end }}
+        {{- if and .Values.podMonitor.enabled (hasKey .Values.env "prometheus_server") (regexMatch "^:\\d+$" .Values.env.prometheus_server) }}
+        ports:
+        - containerPort: {{ trimPrefix ":" .Values.env.prometheus_server }}
+          name: monitoring
+          protocol: TCP
+        {{- end }}
         env:
           {{- if eq (include "kube-vip.toBool" .Values.env.cp_enable) "true" }}
           - name: vip_address

@@ -17,5 +17,5 @@ spec:
     matchLabels:
       {{- include "kube-vip.selectorLabels" . | nindent 6 }}
   podMetricsEndpoints:
-  - targetPort: {{ trimPrefix ":" .Values.env.prometheus_server }}
+  - port: monitoring
 {{- end }}
