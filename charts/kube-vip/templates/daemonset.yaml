@@ -20,7 +20,7 @@ spec:
           - manager
           {{- if kindIs "map" .Values.extraArgs }}
           {{- range $key, $value := .Values.extraArgs }}
-          {{- if not (kindIs "invalid" $value) }}
+          {{- if not (eq $value nil) }}
           - --{{ $key }}={{ tpl ($value | toString) $ }}
           {{- else }}
           - --{{ $key }}
