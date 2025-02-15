@@ -20,11 +20,7 @@ spec:
           - manager
           {{- if kindIs "map" .Values.extraArgs }}
           {{- range $key, $value := .Values.extraArgs }}
-          {{- if not (kindIs "invalid" $value) }}
-          - --{{ $key }}={{ tpl ($value | toString) $ }}
-          {{- else }}
-          - --{{ $key }}
-          {{- end }}
+          - {{ $key }}{{ if not (kindIs "invalid" $value) }}={{ tpl ($value | toString) $ }}{{ end }}
           {{- end }}
           {{- end }}
         {{- if and .Values.podMonitor.enabled (hasKey .Values.env "prometheus_server") (regexMatch "^:\\d+$" .Values.env.prometheus_server) }}
