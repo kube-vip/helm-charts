@@ -71,3 +71,7 @@ affinity:
               operator: Exists
 
 priorityClassName: ""
+
+# Enable loadbalancerClass to only reconcile services that have
+# spec.loadbalancerClass: kube-vip.io/kube-vip-class
+enableloadbalancerClass: false
