@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: {{ include "kube-vip-cloud-provider.name" . }}
   namespace: {{ include "kube-vip-cloudprovider.namespace" . | default "kube-system" }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.replicasCount }}
   selector:

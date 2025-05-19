@@ -31,6 +31,8 @@ cm:
 # If .Values.configMapName is defined, it will use that configMap instead, which you must create yourself.
 configMapName: ""
 
+annotations: {}
+
 resources:
   requests:
     cpu: 50m
