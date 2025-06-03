@@ -10,6 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v0.0.4"
 
+imagePullSecrets: []
+
 # Custom namespace to override the namespace for the deployed resources.
 namespaceOverride: ""
 
