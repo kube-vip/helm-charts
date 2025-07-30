@@ -3,19 +3,6 @@ entries:
   kube-vip:
   - apiVersion: v2
     appVersion: v0.8.9
-    created: "2025-07-30T09:40:23.643960968Z"
-    description: A Helm chart for kube-vip
-    digest: d134ad6fd86d48447238df98457dc0ef765bad17026663e4491aeeb20395964f
-    icon: https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png
-    maintainers:
-    - name: kube-vip
-    name: kube-vip
-    type: application
-    urls:
-    - https://github.com/kube-vip/helm-charts/releases/download/kube-vip-0.6.7/kube-vip-0.6.7.tgz
-    version: 0.6.7
-  - apiVersion: v2
-    appVersion: v0.8.9
     created: "2025-01-28T09:02:37.451250248Z"
     description: A Helm chart for kube-vip
     digest: 9bd1fbc1401458d1fb201c2307de9e46f4935915ff19e7913245f75ebc8057f9
@@ -158,6 +145,19 @@ entries:
   kube-vip-cloud-provider:
   - apiVersion: v2
     appVersion: v0.0.10
+    created: "2025-07-30T09:40:44.926725612Z"
+    description: A Helm chart for kube-vip cloud provider
+    digest: 78db83652c630bca2eda0e43a7626c2999e5fd5f33c748690e32f6e1a00216cf
+    icon: https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png
+    maintainers:
+    - name: kube-vip
+    name: kube-vip-cloud-provider
+    type: application
+    urls:
+    - https://github.com/kube-vip/helm-charts/releases/download/kube-vip-cloud-provider-0.2.6/kube-vip-cloud-provider-0.2.6.tgz
+    version: 0.2.6
+  - apiVersion: v2
+    appVersion: v0.0.10
     created: "2024-11-20T17:04:50.905927754Z"
     description: A Helm chart for kube-vip cloud provider
     digest: 211f1d88deebb68dcf66959956710496e25a99c143191020ad500f4233633eda
@@ -238,4 +238,4 @@ entries:
     urls:
     - https://github.com/kube-vip/helm-charts/releases/download/kube-vip-cloud-provider-0.1.0/kube-vip-cloud-provider-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-30T09:40:23.802190189Z"
+generated: "2025-07-30T09:40:44.926828884Z"
