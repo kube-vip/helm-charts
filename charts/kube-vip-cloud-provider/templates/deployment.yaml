@@ -45,6 +45,10 @@ spec:
             runAsGroup: 65532
             seccompProfile:
               type: RuntimeDefault
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
