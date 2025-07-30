@@ -10,6 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v0.0.4"
 
+imagePullSecrets: []
+
 # Custom namespace to override the namespace for the deployed resources.
 namespaceOverride: ""
 
@@ -30,6 +32,8 @@ cm:
 # By default, kube-vip-cloud-provider will use a configMap automatically generated from .Values.cm.data.
 # If .Values.configMapName is defined, it will use that configMap instead, which you must create yourself.
 configMapName: ""
+
+annotations: {}
 
 resources:
   requests:
@@ -71,3 +75,7 @@ affinity:
               operator: Exists
 
 priorityClassName: ""
+
+# Enable loadbalancerClass to only reconcile services that have
+# spec.loadbalancerClass: kube-vip.io/kube-vip-class
+enableloadbalancerClass: false
