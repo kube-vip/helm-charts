@@ -27,7 +27,7 @@ spec:
           {{- end }}
           {{- end }}
           {{- end }}
-        {{- if and .Values.podMonitor.enabled (hasKey .Values.env "prometheus_server") (regexMatch "^:\\d+$" .Values.env.prometheus_server) }}
+        {{- if and .Values.podMonitor.enabled (regexMatch "^:\\d+$" .Values.env.prometheus_server) }}
         ports:
         - containerPort: {{ trimPrefix ":" .Values.env.prometheus_server }}
           name: monitoring
