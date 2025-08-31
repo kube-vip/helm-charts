@@ -3,6 +3,10 @@ kind: Deployment
 metadata:
   name: {{ include "kube-vip-cloud-provider.name" . }}
   namespace: {{ include "kube-vip-cloudprovider.namespace" . | default "kube-system" }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.replicasCount }}
   selector:
@@ -29,17 +33,21 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           name: {{ include "kube-vip-cloud-provider.name" . }}
           env:
-            - name: KUBEVIP_NAMESPACE
-              value: {{ .Release.Namespace }}
-            - name: KUBEVIP_CONFIG_MAP
-              value: {{ .Values.configMapName | default (include "kube-vip-cloud-provider.name" .) }}
+          - name: KUBEVIP_NAMESPACE
+            value: {{ .Release.Namespace }}
+          - name: KUBEVIP_CONFIG_MAP
+            value: {{ .Values.configMapName | default (include "kube-vip-cloud-provider.name" .) }}
+          {{- if .Values.enableloadbalancerClass }}
+          - name: KUBEVIP_ENABLE_LOADBALANCERCLASS
+            value: "true"
+          {{- end }}
           {{- with .Values.extraEnv }}
-            {{- range $k, $v := . }}
-              {{- $name := $k }}
-              {{- $value := $v }}
-            - name: {{ quote $name }}
-              value: {{ quote $value }}
-            {{- end }}
+          {{- range $k, $v := . }}
+            {{- $name := $k }}
+            {{- $value := $v }}
+          - name: {{ quote $name }}
+            value: {{ quote $value }}
+          {{- end }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
@@ -54,6 +62,10 @@ spec:
             runAsGroup: 65532
             seccompProfile:
               type: RuntimeDefault
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
       {{- if .Values.nodeSelector }}
       nodeSelector:

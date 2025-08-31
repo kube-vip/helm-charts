@@ -10,6 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v0.0.4"
 
+imagePullSecrets: []
+
 # Custom namespace to override the namespace for the deployed resources.
 namespaceOverride: ""
 
@@ -33,12 +35,13 @@ configMapName: ""
 
 # Specify additional environment variables to kube-vip-cloud-provider
 # For example, set custom loadbalancerClass
-# KUBEVIP_ENABLE_LOADBALANCERCLASS: true
 # KUBEVIP_CUSTOM_LOADBALANCERCLASS_NAME: custom-class
 extraEnv: {}
 
 # Specify additional arguments to kube-vip-cloud-provider
 extraArgs: {}
+
+annotations: {}
 
 resources:
   requests:
@@ -80,3 +83,7 @@ affinity:
               operator: Exists
 
 priorityClassName: ""
+
+# Enable loadbalancerClass to only reconcile services that have
+# spec.loadbalancerClass: kube-vip.io/kube-vip-class
+enableloadbalancerClass: false
