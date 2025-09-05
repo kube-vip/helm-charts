@@ -1,4 +1,4 @@
-{{- if and .Values.podMonitor.enabled (hasKey .Values.env "prometheus_server") (regexMatch "^:\\d+$" .Values.env.prometheus_server) }}
+{{- if .Values.podMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
