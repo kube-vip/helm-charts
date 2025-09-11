@@ -33,6 +33,14 @@ cm:
 # If .Values.configMapName is defined, it will use that configMap instead, which you must create yourself.
 configMapName: ""
 
+# Specify additional environment variables to kube-vip-cloud-provider
+# For example, set custom loadbalancerClass
+# KUBEVIP_CUSTOM_LOADBALANCERCLASS_NAME: custom-class
+extraEnv: {}
+
+# Specify additional arguments to kube-vip-cloud-provider
+extraArgs: {}
+
 annotations: {}
 
 resources:
