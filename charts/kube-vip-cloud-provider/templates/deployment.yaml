@@ -20,7 +20,17 @@ spec:
       containers:
         - command:
             - /kube-vip-cloud-provider
-            - --leader-elect-resource-name=kube-vip-cloud-controller
+            - --leader-elect-resource-name={{ .Release.Name }}
+            - --leader-elect-resource-namespace={{ .Release.Namespace }}
+            {{- if kindIs "map" .Values.extraArgs }}
+            {{- range $key, $value := .Values.extraArgs }}
+            {{- if not (kindIs "invalid" $value) }}
+            - --{{ $key }}={{ tpl ($value | toString) $ }}
+            {{- else }}
+            - --{{ $key }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
           image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           name: {{ include "kube-vip-cloud-provider.name" . }}
           env:
@@ -31,6 +41,14 @@ spec:
           {{- if .Values.enableloadbalancerClass }}
           - name: KUBEVIP_ENABLE_LOADBALANCERCLASS
             value: "true"
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- range $k, $v := . }}
+            {{- $name := $k }}
+            {{- $value := $v }}
+          - name: {{ quote $name }}
+            value: {{ quote $value }}
+          {{- end }}
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
@@ -52,7 +70,7 @@ spec:
       serviceAccountName: {{ include "kube-vip-cloud-provider.name" . }}
       {{- if .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml .Values.nodeSelector | indent 8 }}
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
