@@ -6,7 +6,7 @@
 
 ## Adding the Chart
 ```bash
-$ helm repo add kube-vip https://kube-vip.io/helm-charts
+$ helm repo add kube-vip https://kube-vip.github.io/helm-charts
 $ helm repo update
 ```
 
