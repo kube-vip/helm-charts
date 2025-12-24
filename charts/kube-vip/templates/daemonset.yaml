@@ -36,7 +36,7 @@ spec:
         env:
           {{- if eq (include "kube-vip.toBool" .Values.env.cp_enable) "true" }}
           - name: vip_address
-            value: {{ required "A valid config.address required!" .Values.config.address}}
+            value: {{ required "A valid config.address required!" .Values.config.address | quote }}
           {{- end }}
         {{- with .Values.env }}
           {{- range $k, $v := . }}
