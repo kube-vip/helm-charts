@@ -20,8 +20,8 @@ spec:
       containers:
         - command:
             - /kube-vip-cloud-provider
-            - --leader-elect-resource-name={{ .Release.Name }}
-            - --leader-elect-resource-namespace={{ .Release.Namespace }}
+            - --leader-elect-resource-name={{ include "kube-vip-cloud-provider.name" . }}
+            - --leader-elect-resource-namespace={{ include "kube-vip-cloudprovider.namespace" . }}
             {{- if kindIs "map" .Values.extraArgs }}
             {{- range $key, $value := .Values.extraArgs }}
             {{- if not (kindIs "invalid" $value) }}
@@ -35,7 +35,7 @@ spec:
           name: {{ include "kube-vip-cloud-provider.name" . }}
           env:
           - name: KUBEVIP_NAMESPACE
-            value: {{ .Release.Namespace }}
+            value: {{ include "kube-vip-cloudprovider.namespace" . }}
           - name: KUBEVIP_CONFIG_MAP
             value: {{ .Values.configMapName | default (include "kube-vip-cloud-provider.name" .) }}
           {{- if .Values.enableloadbalancerClass }}
