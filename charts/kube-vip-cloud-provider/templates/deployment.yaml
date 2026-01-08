@@ -20,7 +20,7 @@ spec:
       containers:
         - command:
             - /kube-vip-cloud-provider
-            - --leader-elect-resource-name={{ include "kube-vip-cloud-provider.name" . }}
+            - --leader-elect-resource-name={{ include "kube-vip-cloud-provider.fullname" . }}
             - --leader-elect-resource-namespace={{ include "kube-vip-cloudprovider.namespace" . }}
             {{- if kindIs "map" .Values.extraArgs }}
             {{- range $key, $value := .Values.extraArgs }}
