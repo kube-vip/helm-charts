@@ -134,3 +134,6 @@ podMonitor:
   annotations: {}
 
 priorityClassName: ""
+
+# Whether the daemonset should run in the hostNetwork or not
+hostNetwork: true

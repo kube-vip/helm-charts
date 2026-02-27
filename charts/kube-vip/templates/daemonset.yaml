@@ -78,7 +78,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      hostNetwork: true
+      hostNetwork: {{ .Values.hostNetwork }}
       serviceAccountName: {{ include "kube-vip.name" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
