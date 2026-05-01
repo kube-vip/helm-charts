@@ -3,6 +3,10 @@ kind: DaemonSet
 metadata:
   name: {{ include "kube-vip.name" . }}
   namespace: {{ include "kube-vip.namespace" . | default "kube-system" }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   selector:
     matchLabels:

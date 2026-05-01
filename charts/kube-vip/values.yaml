@@ -53,6 +53,9 @@ envFrom: []
 extraLabels: {}
   # Specify extra labels to be added to DaemonSet (and therefore to Pods)
 
+annotations: {}
+  # Specify annotations to be added to DaemonSet
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
