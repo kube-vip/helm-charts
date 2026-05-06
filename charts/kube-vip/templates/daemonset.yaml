@@ -22,6 +22,10 @@ spec:
       {{- with .Values.extraLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - args:
