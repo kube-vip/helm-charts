@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: {{ include "kube-vip.name" . }}
+  name: {{ include "kube-vip.fullname" . }}
   namespace: {{ include "kube-vip.namespace" . | default "kube-system" }}
   {{- with .Values.annotations }}
   annotations:
@@ -87,7 +87,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       hostNetwork: true
-      serviceAccountName: {{ include "kube-vip.name" . }}
+      serviceAccountname: {{ include "kube-vip.fullname" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
