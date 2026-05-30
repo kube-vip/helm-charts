@@ -87,7 +87,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       hostNetwork: true
-      serviceAccountname: {{ include "kube-vip.fullname" . }}
+      serviceAccountName: {{ include "kube-vip.fullname" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
